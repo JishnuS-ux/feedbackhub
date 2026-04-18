@@ -27,7 +27,7 @@ function Dashboard() {
 
   const adminInfo = JSON.parse(localStorage.getItem('adminInfo') || 'null');
   const feedbackLink = adminInfo?._id
-    ? `http://localhost:5173/submit/${adminInfo._id}`
+    ? `${window.location.origin}/submit/${adminInfo._id}`
     : '';
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function Dashboard() {
     try {
       const token = localStorage.getItem('adminToken');
 
-      const { data } = await axios.get('http://localhost:5000/api/feedback', {
+      const { data } = await axios.get(`${API}/api/feedback`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -59,7 +59,7 @@ function Dashboard() {
       const token = localStorage.getItem('adminToken');
 
       await axios.put(
-        `http://localhost:5000/api/feedback/${id}`,
+        `${API}/api/feedback/${id}`,
         { status: newStatus },
         {
           headers: {

@@ -25,7 +25,7 @@ export default function AdminRegister() {
     setLoading(true);
 
     try {
-      const { data } = await axios.post("http://localhost:5000/api/auth/register", formData);
+      const { data } = await axios.post(`${API}/api/auth/register`, formData);
 
       localStorage.setItem("adminToken", data.token);
       localStorage.setItem("adminInfo", JSON.stringify(data.admin));

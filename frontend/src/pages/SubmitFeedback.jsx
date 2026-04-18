@@ -40,7 +40,7 @@ function SubmitFeedback() {
     setIsSubmitting(true);
 
     try {
-      await axios.post(`http://localhost:5000/api/feedback/${adminId}`, formData);
+      await axios.post(`${API}/api/feedback/${adminId}`, formData);
 
       toast.success('Feedback submitted successfully!');
 
