@@ -12,16 +12,17 @@ const PORT = process.env.PORT || 5000;
 // 🔥 FIXED CORS
 app.use(
   cors({
-    origin: "*",
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: [
+      "http://localhost:5173",
+      "https://feedbackhub-5rzv.onrender.com"
+    ],
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+    credentials: true
   })
 );
 
-app.use(express.json());
-
-app.get('/', (req, res) => {
-  res.send('FeedbackHub backend running...');
-});
+app.options('*', cors());
 
 // Routes
 app.use('/api/auth', authRoutes);
