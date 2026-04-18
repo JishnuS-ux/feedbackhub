@@ -32,7 +32,7 @@ function Analytics() {
     try {
       const token = localStorage.getItem('adminToken');
 
-      const { data } = await axios.get('http://localhost:5000/api/feedback', {
+      const { data } = await axios.get(`${API}/api/feedback`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -40,7 +40,7 @@ function Analytics() {
 
       setFeedbacks(data);
     } catch (error) {
-      console.error('Failed to fetch analytics data');
+      console.error('Failed to fetch analytics data', error);
     } finally {
       setLoading(false);
     }
@@ -73,7 +73,7 @@ function Analytics() {
   }));
 
   const StatCard = ({ title, value, icon: Icon, colorClass }) => (
-    <div className="card p-6 flex items-center justify-between">
+    <div className="card flex items-center justify-between p-6">
       <div>
         <p className="text-sm font-medium text-gray-500 dark:text-gray-400">
           {title}
@@ -95,7 +95,7 @@ function Analytics() {
           Analytics Overview
         </h1>
         <p className="mt-1 text-gray-500 dark:text-gray-400">
-          Data insights across all feedback
+          Data insights across your feedback
         </p>
       </div>
 
