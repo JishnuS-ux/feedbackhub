@@ -1,19 +1,46 @@
 const mongoose = require('mongoose');
 
-const feedbackSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  email: { type: String, required: true },
-  product: { 
-    type: String, 
-    required: true
+const feedbackSchema = new mongoose.Schema(
+  {
+    adminId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'Admin',
+      required: true,
+    },
+    name: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    email: {
+      type: String,
+      required: true,
+      trim: true,
+      lowercase: true,
+    },
+    product: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    rating: {
+      type: Number,
+      required: true,
+      min: 1,
+      max: 5,
+    },
+    message: {
+      type: String,
+      required: true,
+      trim: true,
+    },
+    status: {
+      type: String,
+      enum: ['Pending', 'Resolved'],
+      default: 'Pending',
+    },
   },
-  rating: { type: Number, required: true, min: 1, max: 5 },
-  message: { type: String, required: true },
-  status: { 
-    type: String, 
-    default: 'Pending',
-    enum: ['Pending', 'Resolved']
-  }
-}, { timestamps: true });
+  { timestamps: true }
+);
 
 module.exports = mongoose.model('Feedback', feedbackSchema);
