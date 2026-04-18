@@ -1,3 +1,2 @@
-const API = import.meta.env.VITE_API_URL || "http://localhost:5000";
-
+const API = "https://feedbackhub-backend-h4z1.onrender.com";
 export default API;
